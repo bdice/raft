@@ -105,7 +105,6 @@ todo_include_todos = False
 #
 
 html_theme = "nvidia_sphinx_theme"
-html_logo = "../../img/logo-purple-bg-white-text.svg"
 html_favicon = "../../img/icon-512x512.png"
 
 
