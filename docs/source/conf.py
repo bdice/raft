@@ -105,7 +105,6 @@ todo_include_todos = False
 #
 
 html_theme = "nvidia_sphinx_theme"
-html_favicon = "../../img/icon-512x512.png"
 
 
 # Theme options are theme-specific and customize the look and feel of a theme
@@ -114,10 +113,14 @@ html_favicon = "../../img/icon-512x512.png"
 #
 html_theme_options = {
     "external_links": [],
-    # https://github.com/pydata/pydata-sphinx-theme/issues/1220
-    "icon_links": [],
-    "github_url": "https://github.com/rapidsai/raft",
-    "twitter_url": "https://twitter.com/rapidsai",
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/NVIDIA/raft",
+            "icon": "fa-brands fa-github",
+            "type": "fontawesome",
+        },
+    ],
     "show_toc_level": 1,
     "navbar_align": "right",
 }
@@ -158,7 +161,7 @@ latex_documents = [
     (
         master_doc,
         "raft.tex",
-        "RAFT Documentation",
+        f"{project} Documentation",
         "NVIDIA Corporation",
         "manual",
     ),
@@ -168,7 +171,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc, "raft", "RAFT Documentation", [author], 1)]
+man_pages = [(master_doc, "raft", f"{project} Documentation", [author], 1)]
 
 # -- Options for Texinfo output -------------------------------------------
 
@@ -179,7 +182,7 @@ texinfo_documents = [
     (
         master_doc,
         "raft",
-        "RAFT Documentation",
+        f"{project} Documentation",
         author,
         "raft",
         "One line description of project.",
@@ -206,7 +209,7 @@ def setup(app):
 # The following is used by sphinx.ext.linkcode to provide links to github
 linkcode_resolve = make_linkcode_resolve(
     "pylibraft",
-    "https://github.com/rapidsai/raft"
+    "https://github.com/NVIDIA/raft"
     "/blob/{revision}/python/pylibraft/"
     "{package}/{path}#L{lineno}",
 )
