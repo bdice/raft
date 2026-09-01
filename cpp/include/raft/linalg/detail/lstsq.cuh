@@ -77,11 +77,19 @@ bool are_implicitly_synchronized(rmm::cuda_stream_view a, rmm::cuda_stream_view 
   if (a.get() == b.get()) return true;
   // legacy + blocking streams
   unsigned int flags = 0;
-  if (a.is_default()) {
+#ifdef CUDA_API_PER_THREAD_DEFAULT_STREAM
+  if (a.get() == cudaStreamLegacy) {
+#else
+  if (a.get() == cudaStreamLegacy || a.get() == nullptr) {
+#endif
     RAFT_CUDA_TRY(cudaStreamGetFlags(b.get(), &flags));
     if ((flags & cudaStreamNonBlocking) == 0) return true;
   }
-  if (b.is_default()) {
+#ifdef CUDA_API_PER_THREAD_DEFAULT_STREAM
+  if (b.get() == cudaStreamLegacy) {
+#else
+  if (b.get() == cudaStreamLegacy || b.get() == nullptr) {
+#endif
     RAFT_CUDA_TRY(cudaStreamGetFlags(a.get(), &flags));
     if ((flags & cudaStreamNonBlocking) == 0) return true;
   }

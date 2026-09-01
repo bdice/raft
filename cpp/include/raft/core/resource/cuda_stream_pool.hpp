@@ -128,8 +128,9 @@ inline cuda::stream_ref get_next_usable_stream(const resources& res)
  */
 inline cuda::stream_ref get_next_usable_stream(const resources& res, std::size_t stream_idx)
 {
-  return is_stream_pool_initialized(res) ? get_stream_from_stream_pool(res, stream_idx)
-                                         : static_cast<cuda::stream_ref>(get_cuda_stream(res));
+  return is_stream_pool_initialized(res)
+           ? get_stream_from_stream_pool(res, stream_idx)
+           : static_cast<cuda::stream_ref>(get_cuda_stream(res).get());
 }
 
 /**
