@@ -187,7 +187,7 @@ TEST(Raft, HandleDefault)
 {
   raft::handle_t h;
   ASSERT_EQ(0, h.get_device());
-  ASSERT_EQ(rmm::cuda_stream_per_thread, resource::get_cuda_stream(h));
+  ASSERT_EQ(cuda::stream_ref{cudaStreamPerThread}, resource::get_cuda_stream(h));
   ASSERT_NE(nullptr, h.get_cublas_handle());
   ASSERT_NE(nullptr, h.get_cusolver_dn_handle());
   ASSERT_NE(nullptr, h.get_cusolver_sp_handle());
