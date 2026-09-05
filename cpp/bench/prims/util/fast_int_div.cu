@@ -81,7 +81,7 @@ struct fast_int_div_bench : public fixture {
                                   h_divisors.size() * sizeof(divisor_t),
                                   cudaMemcpyHostToDevice,
                                   stream.get()));
-    stream.synchronize();
+    stream.sync();
   }
 
   void run_benchmark(::benchmark::State& state) override
