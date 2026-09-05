@@ -41,7 +41,7 @@ struct reduce_rows_by_key : public fixture {
                                        params.cols,
                                        params.keys,
                                        out.data(),
-                                       stream,
+                                       stream.get(),
                                        false);
     });
   }

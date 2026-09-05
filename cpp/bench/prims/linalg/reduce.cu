@@ -28,10 +28,10 @@ struct reduce : public fixture {
     loop_on_state(state, [this]() {
       if (along_rows) {
         raft::linalg::reduce<true, true>(
-          out.data(), in.data(), input_size.cols, input_size.rows, T(0.f), stream);
+          out.data(), in.data(), input_size.cols, input_size.rows, T(0.f), stream.get());
       } else {
         raft::linalg::reduce<true, false>(
-          out.data(), in.data(), input_size.cols, input_size.rows, T(0.f), stream);
+          out.data(), in.data(), input_size.cols, input_size.rows, T(0.f), stream.get());
       }
     });
   }

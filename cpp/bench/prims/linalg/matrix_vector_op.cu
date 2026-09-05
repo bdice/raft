@@ -54,7 +54,7 @@ struct mat_vec_op : public fixture {
                                                      params.cols,
                                                      params.rows,
                                                      OpT{},
-                                                     stream);
+                                                     stream.get());
           } else {
             raft::linalg::matrixVectorOp<true, false>(out.data() + params.outAlignOffset,
                                                       in.data() + params.inAlignOffset,
@@ -63,7 +63,7 @@ struct mat_vec_op : public fixture {
                                                       params.cols,
                                                       params.rows,
                                                       OpT{},
-                                                      stream);
+                                                      stream.get());
           }
         } else {
           if (params.bcastAlongRows) {
@@ -74,7 +74,7 @@ struct mat_vec_op : public fixture {
                                                       params.cols,
                                                       params.rows,
                                                       OpT{},
-                                                      stream);
+                                                      stream.get());
           } else {
             raft::linalg::matrixVectorOp<false, false>(out.data() + params.outAlignOffset,
                                                        in.data() + params.inAlignOffset,
@@ -83,7 +83,7 @@ struct mat_vec_op : public fixture {
                                                        params.cols,
                                                        params.rows,
                                                        OpT{},
-                                                       stream);
+                                                       stream.get());
           }
         }
       } else {
@@ -95,7 +95,7 @@ struct mat_vec_op : public fixture {
                                                      params.cols,
                                                      params.rows,
                                                      OpT{},
-                                                     stream);
+                                                     stream.get());
           } else {
             raft::linalg::matrixVectorOp<true, false>(out.data() + params.outAlignOffset,
                                                       in.data() + params.inAlignOffset,
@@ -103,7 +103,7 @@ struct mat_vec_op : public fixture {
                                                       params.cols,
                                                       params.rows,
                                                       OpT{},
-                                                      stream);
+                                                      stream.get());
           }
         } else {
           if (params.bcastAlongRows) {
@@ -113,7 +113,7 @@ struct mat_vec_op : public fixture {
                                                       params.cols,
                                                       params.rows,
                                                       OpT{},
-                                                      stream);
+                                                      stream.get());
           } else {
             raft::linalg::matrixVectorOp<false, false>(out.data() + params.outAlignOffset,
                                                        in.data() + params.inAlignOffset,
@@ -121,7 +121,7 @@ struct mat_vec_op : public fixture {
                                                        params.cols,
                                                        params.rows,
                                                        OpT{},
-                                                       stream);
+                                                       stream.get());
           }
         }
       }

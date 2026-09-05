@@ -42,7 +42,7 @@ struct make_blobs : public fixture {
                                params.rows,
                                params.cols,
                                params.clusters,
-                               this->stream,
+                               this->stream.get(),
                                params.row_major);
     });
   }

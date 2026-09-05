@@ -52,7 +52,7 @@ struct TransposeBench : public fixture {
                               output_view.data_handle(),
                               params.rows,
                               params.cols,
-                              handle.get_stream());
+                              handle.get_stream().get());
     });
   }
 

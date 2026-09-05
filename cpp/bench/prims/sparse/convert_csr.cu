@@ -56,7 +56,7 @@ struct bench_base : public fixture {
       // col_ind is over-dimensioned because nnz is unknown at this point
       col_ind(p.num_rows * p.num_cols, stream)
   {
-    init_adj(adj.data(), p.num_rows, p.num_cols, p.divisor, stream);
+    init_adj(adj.data(), p.num_rows, p.num_cols, p.divisor, stream.get());
 
     std::vector<index_t> row_ind_host(p.num_rows);
     for (size_t i = 0; i < row_ind_host.size(); ++i) {

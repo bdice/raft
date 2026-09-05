@@ -83,7 +83,7 @@ struct SelectKCsrTest : public fixture {
                                                  1,
                                                  nnz,
                                                  1,
-                                                 stream,
+                                                 stream.get(),
                                                  false,
                                                  nullptr,
                                                  nullptr,

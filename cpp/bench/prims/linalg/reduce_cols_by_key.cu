@@ -42,8 +42,14 @@ struct reduce_cols_by_key : public fixture {
     state.SetLabel(label_stream.str());
 
     loop_on_state(state, [this]() {
-      raft::linalg::reduce_cols_by_key(
-        in.data(), keys.data(), out.data(), params.rows, params.cols, params.keys, stream, false);
+      raft::linalg::reduce_cols_by_key(in.data(),
+                                       keys.data(),
+                                       out.data(),
+                                       params.rows,
+                                       params.cols,
+                                       params.keys,
+                                       stream.get(),
+                                       false);
     });
   }
 

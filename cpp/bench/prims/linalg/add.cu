@@ -22,7 +22,7 @@ struct add : public fixture {
   void run_benchmark(::benchmark::State& state) override
   {
     loop_on_state(state, [this]() {
-      raft::linalg::add(ptr0.data(), ptr0.data(), ptr1.data(), params.len, stream);
+      raft::linalg::add(ptr0.data(), ptr0.data(), ptr1.data(), params.len, stream.get());
     });
   }
 
