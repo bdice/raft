@@ -178,7 +178,7 @@ class LinearAssignmentProblem {
     weight_t result;
     raft::update_host(
       &result, obj_val_primal_v.data() + spId, 1, resource::get_cuda_stream(handle_));
-    RAFT_CHECK_CUDA(resource::get_cuda_stream(handle_));
+    RAFT_CHECK_CUDA(resource::get_cuda_stream(handle_).get());
     return result;
   }
 
