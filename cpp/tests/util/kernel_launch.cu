@@ -166,7 +166,7 @@ TEST(KernelLaunch, ConvertedRestrictedPointerArgument)
 TEST(KernelLaunch, StreamOverload)
 {
   raft::resources res;
-  cuda::stream_ref stream = resource::get_cuda_stream(res).get();
+  cuda::stream_ref stream = resource::get_cuda_stream(res);
   EXPECT_NO_THROW(raft::launch_kernel(stream, 1, 1, noop_kernel));
   resource::sync_stream(res);
 }
