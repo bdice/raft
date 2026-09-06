@@ -13,6 +13,8 @@
 #include <rmm/cuda_stream_view.hpp>
 #endif
 
+#include <cuda/stream>
+
 #include <source_location>
 
 namespace RAFT_EXPORT raft {
@@ -99,7 +101,7 @@ struct stream_view {
   auto static get_underlying_per_thread_default() -> underlying_view_type
   {
 #ifndef RAFT_DISABLE_CUDA
-    return rmm::cuda_stream_per_thread;
+    return cuda::stream_ref{cudaStreamPerThread};
 #else
     auto static constexpr const default_fail_stream = underlying_view_type{};
     return default_fail_stream;
