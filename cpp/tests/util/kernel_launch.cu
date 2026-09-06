@@ -402,7 +402,8 @@ TEST(KernelLaunch, RuntimeKernelConvertsPointerArgument)
   rmm::device_uvector<int> in(1, stream);
   rmm::device_uvector<int> out(1, stream);
   int host_in = 1;
-  RAFT_CUDA_TRY(cudaMemcpyAsync(in.data(), &host_in, sizeof(int), cudaMemcpyHostToDevice, stream.get()));
+  RAFT_CUDA_TRY(
+    cudaMemcpyAsync(in.data(), &host_in, sizeof(int), cudaMemcpyHostToDevice, stream.get()));
 
   // `int*` into a `int const*` parameter.
   raft::launch_kernel(res,

@@ -337,7 +337,8 @@ std::vector<ValueType> compute_full_spectrum(
   IndexType n    = structure.get_n_rows();
 
   auto dense = raft::make_device_matrix<ValueType, uint32_t, raft::col_major>(handle, n, n);
-  RAFT_CUDA_TRY(cudaMemsetAsync(dense.data_handle(), 0, dense.size() * sizeof(ValueType), stream.get()));
+  RAFT_CUDA_TRY(
+    cudaMemsetAsync(dense.data_handle(), 0, dense.size() * sizeof(ValueType), stream.get()));
   raft::sparse::convert::csr_to_dense<IndexType, ValueType>(
     resource::get_cusparse_handle(handle),
     n,

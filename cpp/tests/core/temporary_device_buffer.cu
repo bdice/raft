@@ -68,8 +68,10 @@ TEST(TemporaryDeviceBuffer, HostPointerWithWriteBack)
                        d_view.data_handle(),
                        d_view.data_handle() + d_view.extent(0),
                        10);
-          raft::copy(
-            result.data(), d_view.data_handle(), d_view.extent(0), resource::get_cuda_stream(h).get());
+          raft::copy(result.data(),
+                     d_view.data_handle(),
+                     d_view.extent(0),
+                     resource::get_cuda_stream(h).get());
         }
       },
       alloc_behavior::ARGUMENT_DRIVEN,

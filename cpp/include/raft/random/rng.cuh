@@ -48,8 +48,12 @@ void uniform(raft::resources const& handle,
              OutputValueType end)
 {
   if (resource::get_dry_run_flag(handle)) { return; }
-  detail::uniform(
-    rng_state, out.data_handle(), out.extent(0), start, end, resource::get_cuda_stream(handle).get());
+  detail::uniform(rng_state,
+                  out.data_handle(),
+                  out.extent(0),
+                  start,
+                  end,
+                  resource::get_cuda_stream(handle).get());
 }
 
 /**
@@ -107,8 +111,12 @@ void uniformInt(raft::resources const& handle,
     "so that we can write to it.");
   static_assert(std::is_integral<OutputValueType>::value,
                 "uniformInt: The elements of the output vector must have integral type.");
-  detail::uniformInt(
-    rng_state, out.data_handle(), out.extent(0), start, end, resource::get_cuda_stream(handle).get());
+  detail::uniformInt(rng_state,
+                     out.data_handle(),
+                     out.extent(0),
+                     start,
+                     end,
+                     resource::get_cuda_stream(handle).get());
 }
 
 /**
@@ -157,8 +165,12 @@ void normal(raft::resources const& handle,
             OutputValueType sigma)
 {
   if (resource::get_dry_run_flag(handle)) { return; }
-  detail::normal(
-    rng_state, out.data_handle(), out.extent(0), mu, sigma, resource::get_cuda_stream(handle).get());
+  detail::normal(rng_state,
+                 out.data_handle(),
+                 out.extent(0),
+                 mu,
+                 sigma,
+                 resource::get_cuda_stream(handle).get());
 }
 
 /**
@@ -213,8 +225,12 @@ void normalInt(raft::resources const& handle,
   static_assert(std::is_integral<OutputValueType>::value,
                 "normalInt: The output vector's value type must be an integer.");
 
-  detail::normalInt(
-    rng_state, out.data_handle(), out.extent(0), mu, sigma, resource::get_cuda_stream(handle).get());
+  detail::normalInt(rng_state,
+                    out.data_handle(),
+                    out.extent(0),
+                    mu,
+                    sigma,
+                    resource::get_cuda_stream(handle).get());
 }
 
 /**
@@ -338,8 +354,14 @@ void normalTable(raft::resources const& handle,
                  OutType sigma)
 {
   if (resource::get_dry_run_flag(handle)) { return; }
-  detail::normalTable(
-    rng_state, ptr, n_rows, n_cols, mu_vec, sigma_vec, sigma, resource::get_cuda_stream(handle).get());
+  detail::normalTable(rng_state,
+                      ptr,
+                      n_rows,
+                      n_cols,
+                      mu_vec,
+                      sigma_vec,
+                      sigma,
+                      resource::get_cuda_stream(handle).get());
 }
 
 /**
@@ -361,7 +383,8 @@ void fill(raft::resources const& handle,
           raft::device_vector_view<OutputValueType, IndexType> out)
 {
   if (resource::get_dry_run_flag(handle)) { return; }
-  detail::fill(rng_state, out.data_handle(), out.extent(0), val, resource::get_cuda_stream(handle).get());
+  detail::fill(
+    rng_state, out.data_handle(), out.extent(0), val, resource::get_cuda_stream(handle).get());
 }
 
 /**
@@ -450,8 +473,12 @@ void scaled_bernoulli(raft::resources const& handle,
                       OutputValueType scale)
 {
   if (resource::get_dry_run_flag(handle)) { return; }
-  detail::scaled_bernoulli(
-    rng_state, out.data_handle(), out.extent(0), prob, scale, resource::get_cuda_stream(handle).get());
+  detail::scaled_bernoulli(rng_state,
+                           out.data_handle(),
+                           out.extent(0),
+                           prob,
+                           scale,
+                           resource::get_cuda_stream(handle).get());
 }
 
 /**
@@ -475,7 +502,8 @@ void scaled_bernoulli(raft::resources const& handle,
                       OutType scale)
 {
   if (resource::get_dry_run_flag(handle)) { return; }
-  detail::scaled_bernoulli(rng_state, ptr, len, prob, scale, resource::get_cuda_stream(handle).get());
+  detail::scaled_bernoulli(
+    rng_state, ptr, len, prob, scale, resource::get_cuda_stream(handle).get());
 }
 
 /**
@@ -550,8 +578,12 @@ void lognormal(raft::resources const& handle,
                OutputValueType sigma)
 {
   if (resource::get_dry_run_flag(handle)) { return; }
-  detail::lognormal(
-    rng_state, out.data_handle(), out.extent(0), mu, sigma, resource::get_cuda_stream(handle).get());
+  detail::lognormal(rng_state,
+                    out.data_handle(),
+                    out.extent(0),
+                    mu,
+                    sigma,
+                    resource::get_cuda_stream(handle).get());
 }
 
 /**
@@ -599,8 +631,12 @@ void logistic(raft::resources const& handle,
               OutputValueType scale)
 {
   if (resource::get_dry_run_flag(handle)) { return; }
-  detail::logistic(
-    rng_state, out.data_handle(), out.extent(0), mu, scale, resource::get_cuda_stream(handle).get());
+  detail::logistic(rng_state,
+                   out.data_handle(),
+                   out.extent(0),
+                   mu,
+                   scale,
+                   resource::get_cuda_stream(handle).get());
 }
 
 /**
@@ -731,8 +767,12 @@ void laplace(raft::resources const& handle,
              OutputValueType scale)
 {
   if (resource::get_dry_run_flag(handle)) { return; }
-  detail::laplace(
-    rng_state, out.data_handle(), out.extent(0), mu, scale, resource::get_cuda_stream(handle).get());
+  detail::laplace(rng_state,
+                  out.data_handle(),
+                  out.extent(0),
+                  mu,
+                  scale,
+                  resource::get_cuda_stream(handle).get());
 }
 
 /**

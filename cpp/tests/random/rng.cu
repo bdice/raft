@@ -470,7 +470,9 @@ class ScaledBernoulliTest : public ::testing::Test {
 template <typename T, int len, int scale>
 class ScaledBernoulliMdspanTest : public ::testing::Test {
  public:
-  ScaledBernoulliMdspanTest() : stream(resource::get_cuda_stream(handle).get()), data(len, stream) {}
+  ScaledBernoulliMdspanTest() : stream(resource::get_cuda_stream(handle).get()), data(len, stream)
+  {
+  }
 
  protected:
   void SetUp() override

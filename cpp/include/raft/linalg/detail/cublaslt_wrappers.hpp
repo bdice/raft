@@ -359,7 +359,8 @@ struct coef_wrapper<true, S> {
     if (alpha != nullptr && beta != nullptr) { return; }
     S defaults[2] = {1, 0};
     RAFT_CUDA_TRY(cudaMallocAsync(&store, 2 * sizeof(S), stream.get()));
-    RAFT_CUDA_TRY(cudaMemcpyAsync(store, defaults, 2 * sizeof(S), cudaMemcpyHostToDevice, stream.get()));
+    RAFT_CUDA_TRY(
+      cudaMemcpyAsync(store, defaults, 2 * sizeof(S), cudaMemcpyHostToDevice, stream.get()));
     if (alpha == nullptr) { alpha = &store[0]; }
     if (beta == nullptr) { beta = &store[1]; }
   }

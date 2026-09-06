@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright (c) 2020-2024, NVIDIA CORPORATION.
+ * SPDX-FileCopyrightText: Copyright (c) 2020-2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -68,15 +68,16 @@ class CholeskyR1Test : public ::testing::Test {
         // Expected solution using Cholesky factorization from scratch
         raft::copy(L_exp.data(), G.data(), n, resource::get_cuda_stream(handle));
         // TODO: Call from public API when ready
-        RAFT_CUSOLVER_TRY(raft::linalg::detail::cusolverDnpotrf(solver_handle,
-                                                                uplo,
-                                                                rank,
-                                                                L_exp.data(),
-                                                                n_rows,
-                                                                (math_t*)workspace.data(),
-                                                                Lwork,
-                                                                devInfo.data(),
-                                                                resource::get_cuda_stream(handle).get()));
+        RAFT_CUSOLVER_TRY(
+          raft::linalg::detail::cusolverDnpotrf(solver_handle,
+                                                uplo,
+                                                rank,
+                                                L_exp.data(),
+                                                n_rows,
+                                                (math_t*)workspace.data(),
+                                                Lwork,
+                                                devInfo.data(),
+                                                resource::get_cuda_stream(handle).get()));
 
         // Incremental Cholesky factorization using rank one updates.
         raft::linalg::choleskyRank1Update(handle,
@@ -103,8 +104,14 @@ class CholeskyR1Test : public ::testing::Test {
     std::vector<cublasFillMode_t> fillmode{CUBLAS_FILL_MODE_LOWER, CUBLAS_FILL_MODE_UPPER};
     for (auto uplo : fillmode) {
       raft::copy(L.data(), G.data(), 4, resource::get_cuda_stream(handle));
-      ASSERT_NO_THROW(raft::linalg::choleskyRank1Update(
-        handle, L.data(), 1, 2, workspace.data(), &Lwork, uplo, resource::get_cuda_stream(handle).get()));
+      ASSERT_NO_THROW(raft::linalg::choleskyRank1Update(handle,
+                                                        L.data(),
+                                                        1,
+                                                        2,
+                                                        workspace.data(),
+                                                        &Lwork,
+                                                        uplo,
+                                                        resource::get_cuda_stream(handle).get()));
       ASSERT_THROW(raft::linalg::choleskyRank1Update(handle,
                                                      L.data(),
                                                      2,

@@ -918,9 +918,10 @@ void radix_topk(bool dry_run,
 
   for (size_t offset = 0; offset < static_cast<size_t>(batch_size); offset += max_chunk_size) {
     int chunk_size = std::min(max_chunk_size, batch_size - offset);
+    RAFT_CUDA_TRY(cudaMemsetAsync(
+      counters.data(), 0, counters.size() * sizeof(Counter<T, IdxT>), stream.get()));
     RAFT_CUDA_TRY(
-      cudaMemsetAsync(counters.data(), 0, counters.size() * sizeof(Counter<T, IdxT>), stream.get()));
-    RAFT_CUDA_TRY(cudaMemsetAsync(histograms.data(), 0, histograms.size() * sizeof(IdxT), stream.get()));
+      cudaMemsetAsync(histograms.data(), 0, histograms.size() * sizeof(IdxT), stream.get()));
     auto kernel = radix_kernel<T, IdxT, BitsPerPass, BlockSize, false, RowLayout>;
 
     T* chunk_out            = out + offset * k;

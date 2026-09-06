@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright (c) 2019-2024, NVIDIA CORPORATION.
+ * SPDX-FileCopyrightText: Copyright (c) 2019-2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -86,8 +86,12 @@ class MakeRegressionTest : public ::testing::TestWithParam<MakeRegressionInputs<
                        stream.get());
 
     // Transpose the values to row-major
-    raft::linalg::transpose(
-      handle, values_cm.data(), values_prod.data(), params.n_samples, params.n_targets, stream.get());
+    raft::linalg::transpose(handle,
+                            values_cm.data(),
+                            values_prod.data(),
+                            params.n_samples,
+                            params.n_targets,
+                            stream.get());
 
     // Add the bias
     raft::linalg::addScalar(values_prod.data(),
@@ -224,8 +228,12 @@ class MakeRegressionMdspanTest : public ::testing::TestWithParam<MakeRegressionI
                        stream.get());
 
     // Transpose the values to row-major
-    raft::linalg::transpose(
-      handle, values_cm.data(), values_prod.data(), params.n_samples, params.n_targets, stream.get());
+    raft::linalg::transpose(handle,
+                            values_cm.data(),
+                            values_prod.data(),
+                            params.n_samples,
+                            params.n_targets,
+                            stream.get());
 
     // Add the bias
     raft::linalg::addScalar(values_prod.data(),
