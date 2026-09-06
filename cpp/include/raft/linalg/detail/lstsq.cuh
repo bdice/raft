@@ -267,7 +267,7 @@ void lstsqEig(raft::resources const& handle,
 {
   cuda::stream_ref mainStream   = cuda::stream_ref(stream);
   cuda::stream_ref multAbStream = resource::get_next_usable_stream(handle);
-  bool dry_run                       = resource::get_dry_run_flag(handle);
+  bool dry_run                  = resource::get_dry_run_flag(handle);
   bool concurrent;
   if (dry_run) {
     concurrent = false;
