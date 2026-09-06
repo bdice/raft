@@ -9,8 +9,6 @@
 #include <raft/core/logger.hpp>
 #ifndef RAFT_DISABLE_CUDA
 #include <raft/core/interruptible.hpp>
-
-#include <cuda/stream>
 #endif
 
 #include <cuda/stream>
